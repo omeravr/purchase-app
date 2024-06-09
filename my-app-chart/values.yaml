@@ -1,0 +1,19 @@
+# values.yaml
+
+apiServer:
+  image: registry-1.docker.io/omerav10/customer-management-api:v5
+
+kafka:
+  image: wurstmeister/kafka:latest
+
+zookeeper:
+  image: wurstmeister/zookeeper:latest
+
+mongo:
+  image: mongo:latest
+  username: root
+  password: example
+
+webServer:
+  image: registry-1.docker.io/omerav10/customer-facing-webserver:v7
+

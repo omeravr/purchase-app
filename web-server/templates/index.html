@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Purchase App</title>
+</head>
+<body>
+    <button onclick="buy()">Buy</button>
+    <button onclick="getAllUserBuys()">Get All User Buys</button>
+    <div id="response"></div> <!-- Add a div to display the response -->
+    <script>
+        function buy() {
+            fetch('/buy', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: 'user1',
+                    userid: '1',
+                    price: 100,
+                    timestamp: new Date().toISOString()
+                })
+            }).then(response => response.json()).then(data => console.log(data));
+        }
+
+        function getAllUserBuys() {
+            fetch('/getAllUserBuys')
+                .then(response => response.json())
+                .then(data => {
+                    // Display the response on the screen
+                    document.getElementById('response').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    // Display any errors on the screen
+                    document.getElementById('response').innerText = 'Error: ' + error.message;
+                });
+        }
+    </script>
+</body>
+</html>
+
